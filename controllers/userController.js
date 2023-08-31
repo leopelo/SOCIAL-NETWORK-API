@@ -28,6 +28,7 @@ module.exports = {
   },
   // create a new student
   createUser(req, res) {
+    console.log("adding user");
     User.create(req.body)
       .then((user) => res.json(user))
       .catch((err) => res.status(500).json(err));
