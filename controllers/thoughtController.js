@@ -12,9 +12,8 @@ module.exports = {
   getThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select('-__v')
-      .then( (thought) => {
-        res.json(thought);
-      })
+      .then( (thought) => 
+        res.json(thought))
       .catch((err) => {
         console.log(err);
         return res.status(500).json(err);
@@ -29,6 +28,7 @@ module.exports = {
         {$addToSet: {thoughts: newThought._id}},
         {new:true}
         );
+        
     }
    res.json('thought created')  }
   catch(err) {
@@ -36,6 +36,11 @@ module.exports = {
   }
 },
   
+/*createThought(req,res) {
+  Thought.create(req.body)
+  .then((thought) => res.json(thought))
+  .catch((err) => res.status(600).json(er));*/
+//},
   // Delete a thought
   async deleteThought(req, res) {
     try {const eraseThought = await Thought.delete(req.body)
